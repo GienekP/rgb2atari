@@ -8,43 +8,43 @@ unsigned char convert(unsigned char r, unsigned char g, unsigned char b, unsigne
 	unsigned char i,c=0,ret=0;
 	double pi,rr,gg,bb,ll,Y,U,V,angle;
 	pi=acos(-1);
-    rr=((double)(r)/255.0);
-    gg=((double)(g)/255.0);
-    bb=((double)(b)/255.0);	
-    ll=((double)(lvl)/500.0);	
-    Y=0.299*rr+0.587*gg+0.114*bb;
-    U=0.492*(bb-Y);
-    V=0.877*(rr-Y);
+	rr=((double)(r)/255.0);
+	gg=((double)(g)/255.0);
+	bb=((double)(b)/255.0);	
+	ll=((double)(lvl)/500.0);	
+	Y=0.299*rr+0.587*gg+0.114*bb;
+	U=0.492*(bb-Y);
+	V=0.877*(rr-Y);
 	angle=atan2(V,U)*180.0/pi;
-    if (angle<0) {angle=(360+angle);};
-    if ((U*U+V*V)>(ll*ll))
-    {
-        double dist=360.0*360.0;
-        for (i=1; i<16; i++)
-        {
+	if (angle<0) {angle=(360+angle);};
+	if ((U*U+V*V)>(ll*ll))
+	{
+		double dist=360.0*360.0;
+		for (i=1; i<16; i++)
+		{
 			double r=(tangle[i]-angle);
-            double d=r*r;
-            if (d<dist)
-            {
-                dist=d;
-                c=i;
-            };
-        };
-    };
-    Y=(Y*255.0)/16.0;
-    ret=(unsigned char)(Y);
-    c<<=4;
-    ret|=c;
+		    	double d=r*r;
+		    	if (d<dist)
+		    	{
+				dist=d;
+				c=i;
+			};
+		};
+	};
+	Y=(Y*255.0)/16.0;
+	ret=(unsigned char)(Y);
+	c<<=4;
+	ret|=c;
 	return ret;
 }
 /*--------------------------------------------------------------------*/
 void rgb2atari(const char *fin, const char *fout, unsigned char lvl)
 {
 	unsigned int i,j;
-    FILE *fi,*fo;
-    fi=fopen(fin,"rb");
-    if (fi)
-    {
+    	FILE *fi,*fo;
+    	fi=fopen(fin,"rb");
+    	if (fi)
+    	{
 		fseek(fi,0,SEEK_END);
 		j=ftell(fi);
 		fseek(fi,0,0);
