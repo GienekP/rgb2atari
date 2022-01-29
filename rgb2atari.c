@@ -48,7 +48,7 @@ void rgb2atari(const char *fin, const char *fout, unsigned char lvl)
 		fseek(fi,0,SEEK_END);
 		j=ftell(fi);
 		fseek(fi,0,0);
-		fo=fopen(fout,"w");
+		fo=fopen(fout,"wb");
 		if (fo)
 		{
 			for (i=0; i<(j/3); i++)
